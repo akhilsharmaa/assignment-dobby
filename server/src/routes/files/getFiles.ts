@@ -18,10 +18,13 @@ router.post("/all", authenticate, async (req: AuthenticatedRequest, res: Respons
     
     try {  
 
+        let parent_folder_id = req.body.parent_folder_id
+        parent_folder_id = parent_folder_id ? Object(parent_folder_id): undefined;  
+
         const allFiles = await FilesSchema.find(
             {
                 createdBy: req.user._id, 
-                parentFolderId: Object(req.body.parent_folder_id), 
+                parentFolderId: parent_folder_id
             }
         ); 
 
@@ -42,7 +45,7 @@ router.post("/all", authenticate, async (req: AuthenticatedRequest, res: Respons
 
     } catch (error) {
         console.error(error);
-        res.status(500).send("Something went wrong, please try again later.")
+        res.status(500).send("Something went wrong, please try again later." )
     }
 });
 

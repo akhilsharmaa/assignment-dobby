@@ -8,7 +8,8 @@ const router = express.Router();
 
 router.post("/all", authenticate, async (req: AuthenticatedRequest, res: Response): Promise<void> => {  
     
-    const parent_folder_id: String|null = req.body.parent_folder_id; 
+    let parent_folder_id = req.body.parent_folder_id
+    parent_folder_id = parent_folder_id ? Object(parent_folder_id): undefined;  
 
     try { 
         const allFolders = await FolderSchema.find(
