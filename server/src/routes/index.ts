@@ -1,10 +1,9 @@
 import express, { Router } from 'express'; 
 const router: Router = express.Router(); 
 
-import getPost from "./posts/get"
 import registerUser from "./users/register"
 import loginUser from "./users/login"
-router.use('', [getPost, registerUser, loginUser]);
+router.use('', [registerUser, loginUser]);
 
 import newUpload from "./files/putFiles" 
 import getUploads from "./files/getFiles" 
