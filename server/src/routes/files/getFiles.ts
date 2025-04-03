@@ -16,9 +16,13 @@ interface FileRespose {
 
 router.post("/all", authenticate, async (req: AuthenticatedRequest, res: Response): Promise<void> => {  
     
-    try { 
+    try {  
+
         const allFiles = await FilesSchema.find(
-            {createdBy: req.user._id}
+            {
+                createdBy: req.user._id, 
+                parentFolderId: Object(req.body.parent_folder_id), 
+            }
         ); 
 
         const files: FileRespose[] = []; 
