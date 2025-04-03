@@ -2,14 +2,22 @@ import { useState } from 'react';
 import axios from 'axios';
 import { CONFIG } from '../../config-global'
 import { useAuth } from '../../context/AuthContext'
+import CreateNewFolder from './CreateNewFolder';
 
-export default function UploadFileView() {
+interface UploadFileViewProps {
+    parent_folder_id: string | undefined;
+    setParentFoldeId: React.Dispatch<React.SetStateAction<string | undefined>>;
+} 
+
+
+export default function UploadFileView({parent_folder_id, setParentFoldeId}:UploadFileViewProps) {
 
     const userContext = useAuth();
     const [loading, setLoading] = useState<boolean>(false);
     const [errorText, setErrorText] = useState<string | undefined>(undefined);
     const [successMsg, setSuccessMsg] = useState<string | undefined>(undefined);
-
+    const [isNewFolderDialogOpen, setIsNewFolderDialogOpen] = useState<boolean>(false);
+    
     const handleUpload = (files: any) => {
         const upload = async () => {
 
@@ -50,6 +58,16 @@ export default function UploadFileView() {
 
     return (
         <div className="w-3/4 m-auto">
+            
+
+            <CreateNewFolder  
+                    parent_folder_id={parent_folder_id}
+                    setParentFoldeId={setParentFoldeId}
+                    isNewFolderDialogOpen={isNewFolderDialogOpen}
+                    setIsNewFolderDialogOpen={setIsNewFolderDialogOpen}
+                />
+
+                
             <div className='text-xl'>
                 <label className="block mb-2 text-xl font-medium text-gray-900 dark:text-white" htmlFor="file_input">Upload file</label>
                 <input

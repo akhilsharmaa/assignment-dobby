@@ -15,11 +15,14 @@ const router = express.Router();
 
 router.post("/new", authenticate, async (req: AuthenticatedRequest, res: Response): Promise<void> => {  
     
+    let parent_folder_id = req.body.parent_folder_id
+    parent_folder_id = parent_folder_id ? Object(parent_folder_id): undefined;
+
     try {
         
         const newFolder = await FolderSchema.create({
             foldername: req.body.folder_name, 
-            parentFolderId: Object(req.body.parent_folder_id),
+            parentFolderId: parent_folder_id,
             createdBy: req.user._id,    
         }) 
         

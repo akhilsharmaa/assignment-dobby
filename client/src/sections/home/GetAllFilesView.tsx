@@ -4,8 +4,17 @@ import { CONFIG } from '../../config-global'
 import { useAuth } from '../../context/AuthContext'  
 import FileView from '../../components/FileView';
 import FolderView from '../../components/FolderView';
+import CreateNewFolder from './CreateNewFolder';
+import { useSearchParams } from 'react-router-dom';
 
-export default function UploadFileView() {
+
+interface GetAllFileViewProps {
+    parent_folder_id: string | undefined;
+    setParentFoldeId: React.Dispatch<React.SetStateAction<string | undefined>>;
+  }
+
+
+export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetAllFileViewProps) {
 
     const userContext = useAuth();
     const [loading, setLoading] = useState<boolean>(false);
@@ -13,6 +22,7 @@ export default function UploadFileView() {
     const [errorText, setErrorText] = useState<string | undefined>(undefined);
     const [filesList, setFilesList] = useState<any[]>([]); 
     const [folderList, setFolderList] = useState<any[]>([]); 
+    const [newfolderName, setNewFolderName] = useState<string|undefined>(undefined);  
 
     const fetchAllUploads = () => {
         const fetchUploads = async () => {
@@ -27,8 +37,6 @@ export default function UploadFileView() {
                         }
                     }
                 );
-
-                console.log(response.data);
                 
                 if (response.status === 200) {
                     setFilesList(response.data);  
@@ -85,8 +93,11 @@ export default function UploadFileView() {
         fetchAllUploadFolders();
     }, [])
  
+
+
     return (
         <div className="w-2/3 m-auto">
+                
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500  ">
                     <thead className="text-xs text-gray-700 uppercase ">
                         <tr>

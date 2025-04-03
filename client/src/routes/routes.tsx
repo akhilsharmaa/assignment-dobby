@@ -9,18 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 // ----------------------------------------------------------------------
 
 
-export const routes  = [  
-    {
-        path: '',
-        element: ( 
-          <AuthProvider>
-            <ProtectedRoute>
-                <HomePage /> 
-            </ProtectedRoute>
-          </AuthProvider>
-        ),
-    }, 
-
+export const routes  = [   
     {
       path: '/',
       element: ( 
@@ -53,6 +42,6 @@ export const routes  = [
     },
     {
       path: '*',
-      element: <Navigate to="/404" replace />,
+      element: <Navigate to="/" replace />,
     }
   ]; 

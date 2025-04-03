@@ -13,6 +13,6 @@ export type ConfigValue = {
 export const CONFIG: ConfigValue = {
   appName: 'Minimal UI',
   appVersion: packageJson.version,
-  // baseUrl: "http://0.0.0.0:8000"
-  baseUrl: "https://assignment-dobby.onrender.com"
+  baseUrl: "http://0.0.0.0:8000"
+  // baseUrl: "https://assignment-dobby.onrender.com"
 };
