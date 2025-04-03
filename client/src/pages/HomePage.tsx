@@ -1,11 +1,15 @@
 import React from 'react'
 import Navbar from '../components/navbar';
+import UploadFileView from '../sections/home/UploadFileView';
+import FetchAllUploads from '../sections/home/GetAllFilesView';
 
 function HomePage() {
   return (
-    <div>
+    <>
       <Navbar/> 
-    </div>
+      <UploadFileView/>
+      <FetchAllUploads/>
+    </>
   )
 }
 

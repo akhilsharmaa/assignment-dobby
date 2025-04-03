@@ -6,21 +6,19 @@ interface FileViewProps {
     file:  File,  
 } 
 
-// TODO ADD CAROSEL FOR THE data. 
-
 function FileView({file}: FileViewProps) {
-  return (  
-        <div className=" "> 
-            
-            <div className="w-full  bg-white border border-gray-200 rounded-lg shadow-sm "> 
-                <img 
-                    className="w-full h-96  rounded-lg object-cover"  
-                    src={`${file.url[0]}`} 
-                    alt="" />
-            </div> 
-            <p className='w-1/2 text-sm'>{file.fileName}</p> 
-            
-        </div> 
+  return (    
+        <tr className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-sm  ">
+            <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                {file.filename}
+            </th>
+        <td className="px-6 py-4">
+                {file.contentType}
+        </td>
+        <td className="px-6 py-4">
+                {file._id}
+        </td> 
+        </tr>
     )
 }
 
