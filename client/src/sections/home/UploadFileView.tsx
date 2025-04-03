@@ -65,14 +65,15 @@ export default function UploadFileView({
         <div className="auto">
 
             <div className='text-xl'>
-                <label className="block mb-2 text-xl font-medium text-gray-900 dark:text-white" htmlFor="file_input">Upload file</label>
+            <label className="cursor-pointer inline-flex items-center px-4 py-3 bg-blue-400 text-white text-sm font-medium rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+                Upload File
                 <input
-                    className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                    aria-describedby="file_input_help"
-                    id="file_input"
                     type="file"
-                    onChange={(e) => { handleUpload(e.target) }} />
-                <p className="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+                    className="hidden"
+                    id="file_input"
+                    onChange={(e) => handleUpload(e.target)}
+                />
+                </label>
                 <p>{errorText}</p>
 
 
@@ -91,18 +92,12 @@ export default function UploadFileView({
                 {
                     successMsg && 
 
-                    <div id="alert-3" className="flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                    <div id="alert-3" className="fixed top-20 right-10 flex items-center p-4 mb-4 text-green-800 rounded-lg bg-green-50 " role="alert">
 
                         <span className="sr-only">Info</span>
                         <div className="ms-3 text-sm font-medium">
                             {successMsg}
-                        </div>
-                        <button type="button" className="ms-auto -mx-1.5 -my-1.5 bg-green-50 text-green-500 rounded-lg focus:ring-2 focus:ring-green-400 p-1.5 hover:bg-green-200 inline-flex items-center justify-center h-8 w-8 dark:bg-gray-800 dark:text-green-400 dark:hover:bg-gray-700" data-dismiss-target="#alert-3" aria-label="Close">
-                            <span className="sr-only">Close</span>
-                            <svg className="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                            </svg>
-                        </button>
+                        </div> 
                     </div>
                 }
 

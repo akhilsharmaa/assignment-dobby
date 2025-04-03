@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../components/navbar';
 import UploadFileView from '../sections/home/UploadFileView';
 import FetchAllUploads from '../sections/home/GetAllFilesView';
+import Footer from '../components/Footer';
 
 function HomePage() {
 
@@ -14,6 +15,7 @@ function HomePage() {
         setParentFoldeId={setParentFoldeId}
         parent_folder_id={parent_folder_id}
       />
+      <Footer/>
     </>
   )
 }

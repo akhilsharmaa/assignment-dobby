@@ -16,7 +16,7 @@ function FileView({file}: FileViewProps) {
                 {file.contentType}
         </td>
         <td className="px-6 py-4">
-                {file._id}
+                {file.uploadedAt.toString()}
         </td> 
         </tr>
     )

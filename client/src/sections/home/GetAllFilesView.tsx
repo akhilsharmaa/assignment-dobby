@@ -106,21 +106,25 @@ export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetA
 
 
     return (
-        <div className="w-2/3 m-auto">
+        <div className="w-2/3 m-auto mt-10">
                 
-               <UploadFileView
-                    fetchAllFilesFolders={fetchAllFilesFolders}
-                    setParentFoldeId={setParentFoldeId}
-                    parent_folder_id={parent_folder_id}
-                />
+                <div className='flex justify-end'>
 
-                <CreateNewFolder  
-                    fetchAllFilesFolders={fetchAllFilesFolders}
-                    parent_folder_id={parent_folder_id}
-                    setParentFoldeId={setParentFoldeId}
-                    isNewFolderDialogOpen={isNewFolderDialogOpen}
-                    setIsNewFolderDialogOpen={setIsNewFolderDialogOpen}
-                />
+                    <CreateNewFolder  
+                        fetchAllFilesFolders={fetchAllFilesFolders}
+                        parent_folder_id={parent_folder_id}
+                        setParentFoldeId={setParentFoldeId}
+                        isNewFolderDialogOpen={isNewFolderDialogOpen}
+                        setIsNewFolderDialogOpen={setIsNewFolderDialogOpen}
+                    />
+
+                    <UploadFileView
+                        fetchAllFilesFolders={fetchAllFilesFolders}
+                        setParentFoldeId={setParentFoldeId}
+                        parent_folder_id={parent_folder_id}
+                    />
+                </div>
+
 
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500  ">
                     <thead className="text-xs text-gray-700 uppercase ">
