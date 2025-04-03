@@ -1,7 +1,6 @@
 import { Outlet, Navigate, useRoutes } from 'react-router-dom'; 
 import { AuthProvider } from "../context/AuthContext"
-// ----------------------------------------------------------------------
-import DashBoard from '../pages/DashboardPage';  
+// ---------------------------------------------------------------------- 
 import HomePage from '../pages/HomePage';  
 import LoginPage from '../pages/LoginPage';  
 import RegisterPage from '../pages/RegisterPage';   
@@ -10,29 +9,28 @@ import ProtectedRoute from './components/ProtectedRoute';
 // ----------------------------------------------------------------------
 
 
-export const routes  = [ 
+export const routes  = [  
     {
-      path:"/", 
-      element: ( 
-          <HomePage /> 
-      ),
-    }, 
-    {
-        path: 'app',
+        path: '',
         element: ( 
           <AuthProvider>
             <ProtectedRoute>
-                  <DashBoard /> 
+                <HomePage /> 
             </ProtectedRoute>
           </AuthProvider>
         ),
-    },
+    }, 
+
     {
-        path: 'home',
-        element: ( 
-            <HomePage /> 
+      path: '/',
+      element: ( 
+        <AuthProvider>
+          <ProtectedRoute>
+              <HomePage /> 
+          </ProtectedRoute>
+        </AuthProvider>
         ),
-    },
+    }, 
     {
       path: 'login',
       element: ( 

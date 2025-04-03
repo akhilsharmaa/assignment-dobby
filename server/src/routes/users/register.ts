@@ -44,7 +44,7 @@ router.post('/register', async (req: Request, res: Response): Promise<void> => {
             res.status(409).send("Username or email already exists, please login");
         }
         
-        res.status(500).send("Failed to register user, please try again later.");
+        res.status(500).json({ message: "Failed to register user, please try again later." });
     }
 });
 
