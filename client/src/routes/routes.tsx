@@ -11,7 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 
 export const routes  = [   
     {
-      path: '/',
+      path: '/:folder_id',
       element: ( 
         <AuthProvider>
           <ProtectedRoute>

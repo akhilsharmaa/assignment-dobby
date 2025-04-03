@@ -2,7 +2,7 @@ import { Schema, model, connect } from 'mongoose';
 
 
 const fileSchema = new Schema({
-    parentFolderId: {type: String, required: false}, 
+    parentFolderId: {type: String, required: true, default: "root"}, 
     filename: {type: String,required: true},
     contentType: {type: String,required: true},
     data: {type: Buffer,required: true},

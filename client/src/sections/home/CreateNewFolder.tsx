@@ -5,16 +5,14 @@ import React, { useState } from 'react'
 import { Button } from '@mui/material';
 
 interface CreateFolderInputProps {
-    parent_folder_id: string | undefined;
-    setParentFoldeId: React.Dispatch<React.SetStateAction<string | undefined>>;
+    parent_folder_id: string | undefined; 
     isNewFolderDialogOpen: boolean | undefined;
     setIsNewFolderDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
     fetchAllFilesFolders: () => void; 
 }
 
 function CreateNewFolder({
-            parent_folder_id, 
-            setParentFoldeId,
+            parent_folder_id,  
             isNewFolderDialogOpen, 
             setIsNewFolderDialogOpen, 
             fetchAllFilesFolders, 
@@ -28,7 +26,8 @@ function CreateNewFolder({
         const fetchUploads = async () => {
             try {
                 const body = { 
-                    "folder_name": newFolderName
+                    "folder_name": newFolderName, 
+                    "parent_folder_id": parent_folder_id, 
                 };
                 const response = await axios.post(`${CONFIG.baseUrl}/folders/new`,
                     body, 

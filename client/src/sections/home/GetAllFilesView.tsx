@@ -10,12 +10,11 @@ import UploadFileView from './UploadFileView';
 
 
 interface GetAllFileViewProps {
-    parent_folder_id: string | undefined;
-    setParentFoldeId: React.Dispatch<React.SetStateAction<string | undefined>>;
+    parent_folder_id: string | undefined; 
   }
 
 
-export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetAllFileViewProps) {
+export default function GetAllFileView({parent_folder_id}:GetAllFileViewProps) {
 
     const userContext = useAuth();
     const [loading, setLoading] = useState<boolean>(false);
@@ -102,7 +101,7 @@ export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetA
 
     useEffect(() => { 
         fetchAllFilesFolders(); 
-    }, [])
+    }, [parent_folder_id])
 
 
     return (
@@ -112,15 +111,13 @@ export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetA
 
                     <CreateNewFolder  
                         fetchAllFilesFolders={fetchAllFilesFolders}
-                        parent_folder_id={parent_folder_id}
-                        setParentFoldeId={setParentFoldeId}
+                        parent_folder_id={parent_folder_id} 
                         isNewFolderDialogOpen={isNewFolderDialogOpen}
                         setIsNewFolderDialogOpen={setIsNewFolderDialogOpen}
                     />
 
                     <UploadFileView
-                        fetchAllFilesFolders={fetchAllFilesFolders}
-                        setParentFoldeId={setParentFoldeId}
+                        fetchAllFilesFolders={fetchAllFilesFolders} 
                         parent_folder_id={parent_folder_id}
                     />
                 </div>
@@ -138,7 +135,8 @@ export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetA
                     <tbody>
 
                     {folderList.map((folder, index)  => {
-                        return <FolderView folder={folder} />
+                        return <FolderView 
+                            folder={folder} />
                     })}  
 
                     {filesList.map((file, index)  => {

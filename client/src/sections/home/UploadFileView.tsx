@@ -5,15 +5,13 @@ import { useAuth } from '../../context/AuthContext'
 import CreateNewFolder from './CreateNewFolder';
 
 interface UploadFileViewProps {
-    parent_folder_id: string | undefined;
-    setParentFoldeId: React.Dispatch<React.SetStateAction<string | undefined>>;
+    parent_folder_id: string | undefined; 
     fetchAllFilesFolders: () => void; 
 } 
 
 
 export default function UploadFileView({
-            parent_folder_id, 
-            setParentFoldeId, 
+            parent_folder_id,  
             fetchAllFilesFolders
         }:UploadFileViewProps) {
 
@@ -28,6 +26,7 @@ export default function UploadFileView({
             const currentFile: File = files.files[0];
             const formData = new FormData();
             formData.append('file', currentFile);
+            formData.append('parent_folder_id', parent_folder_id || "TODO:" );
 
             try {
 
