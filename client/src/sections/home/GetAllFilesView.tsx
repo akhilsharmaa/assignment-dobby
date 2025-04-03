@@ -6,6 +6,7 @@ import FileView from '../../components/FileView';
 import FolderView from '../../components/FolderView';
 import CreateNewFolder from './CreateNewFolder';
 import { useSearchParams } from 'react-router-dom';
+import UploadFileView from './UploadFileView';
 
 
 interface GetAllFileViewProps {
@@ -23,11 +24,15 @@ export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetA
     const [filesList, setFilesList] = useState<any[]>([]); 
     const [folderList, setFolderList] = useState<any[]>([]); 
     const [newfolderName, setNewFolderName] = useState<string|undefined>(undefined);  
+    const [isNewFolderDialogOpen, setIsNewFolderDialogOpen] = useState<boolean>(false);
 
     const fetchAllUploads = () => {
         const fetchUploads = async () => {
             try {
-                const body = {};
+
+                const body = {
+                    "parent_folder_id": parent_folder_id, 
+                };
                 const response = await axios.post(`${CONFIG.baseUrl}/files/all`,
                     body, 
                     {
@@ -59,7 +64,9 @@ export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetA
     const fetchAllUploadFolders = () => {
         const fetchUploads = async () => {
             try {
-                const body = {};
+                const body = {
+                    "parent_folder_id": parent_folder_id, 
+                };
                 const response = await axios.post(`${CONFIG.baseUrl}/folders/all`,
                     body, 
                     {
@@ -88,16 +95,33 @@ export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetA
         fetchUploads();
     } 
 
-    useEffect(() => {
+    const fetchAllFilesFolders = () => {
         fetchAllUploads(); 
         fetchAllUploadFolders();
+    }
+
+    useEffect(() => { 
+        fetchAllFilesFolders(); 
     }, [])
- 
 
 
     return (
         <div className="w-2/3 m-auto">
                 
+               <UploadFileView
+                    fetchAllFilesFolders={fetchAllFilesFolders}
+                    setParentFoldeId={setParentFoldeId}
+                    parent_folder_id={parent_folder_id}
+                />
+
+                <CreateNewFolder  
+                    fetchAllFilesFolders={fetchAllFilesFolders}
+                    parent_folder_id={parent_folder_id}
+                    setParentFoldeId={setParentFoldeId}
+                    isNewFolderDialogOpen={isNewFolderDialogOpen}
+                    setIsNewFolderDialogOpen={setIsNewFolderDialogOpen}
+                />
+
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500  ">
                     <thead className="text-xs text-gray-700 uppercase ">
                         <tr>
@@ -123,7 +147,7 @@ export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetA
                     loading &&
 
                     <div role="status" className="max-w-sm mt-10 animate-pulse">
-                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                        <div className="h-2.5 bg-gray-200 rounded-full  "></div>
                         <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
                         <span className="sr-only">Loading...</span>
                         <p className='p-4'>Loading Files... </p>
@@ -134,12 +158,12 @@ export default function GetAllFileView({parent_folder_id, setParentFoldeId}:GetA
                     folderLoading &&
 
                     <div role="status" className="max-w-sm  mt-10  animate-pulse">
-                        <div className="h-2.5 bg-gray-200 rounded-full dark:bg-gray-700 w-48 mb-4"></div>
+                        <div className="h-2.5 bg-gray-200 rounded-full  "></div>
                         <div className="h-2 bg-gray-200 rounded-full dark:bg-gray-700 max-w-[360px]"></div>
                         <span className="sr-only">Loading...</span>
                         <p className='p-4'>Loading Folders... </p>
                     </div> 
-                }
+                } 
 
             </table>
         </div>

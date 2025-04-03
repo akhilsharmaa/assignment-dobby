@@ -9,6 +9,7 @@ interface CreateFolderInputProps {
     setParentFoldeId: React.Dispatch<React.SetStateAction<string | undefined>>;
     isNewFolderDialogOpen: boolean | undefined;
     setIsNewFolderDialogOpen: React.Dispatch<React.SetStateAction<boolean>>;
+    fetchAllFilesFolders: () => void; 
 }
 
 function CreateNewFolder({
@@ -16,6 +17,7 @@ function CreateNewFolder({
             setParentFoldeId,
             isNewFolderDialogOpen, 
             setIsNewFolderDialogOpen, 
+            fetchAllFilesFolders, 
         }:CreateFolderInputProps) {
     const userContext = useAuth();
     const [newFolderName, setNewFoldername] = useState<string|undefined>(undefined); 
@@ -36,19 +38,17 @@ function CreateNewFolder({
                             "Authorization": `Bearer ${userContext.token}`,
                         }
                     }
-                );
-                
-                console.log(response);
+                ); 
 
                 if (response.status === 200) {
-                    setResponseText(response.data)
-                    setIsNewFolderDialogOpen(false)
+                    setResponseText(response.data)  
+                    fetchAllFilesFolders();  
                 } else {
                     
                     // setErrorText(response.data)
                 }
-
                 // setFolderLoading(false);
+                
             } catch (error: any) {
                 // setFolderLoading(false);
 

@@ -10,10 +10,6 @@ function HomePage() {
   return (
     <>
       <Navbar/> 
-      <UploadFileView
-        setParentFoldeId={setParentFoldeId}
-        parent_folder_id={parent_folder_id}
-      />
       <FetchAllUploads
         setParentFoldeId={setParentFoldeId}
         parent_folder_id={parent_folder_id}

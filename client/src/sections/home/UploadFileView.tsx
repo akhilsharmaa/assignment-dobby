@@ -7,16 +7,20 @@ import CreateNewFolder from './CreateNewFolder';
 interface UploadFileViewProps {
     parent_folder_id: string | undefined;
     setParentFoldeId: React.Dispatch<React.SetStateAction<string | undefined>>;
+    fetchAllFilesFolders: () => void; 
 } 
 
 
-export default function UploadFileView({parent_folder_id, setParentFoldeId}:UploadFileViewProps) {
+export default function UploadFileView({
+            parent_folder_id, 
+            setParentFoldeId, 
+            fetchAllFilesFolders
+        }:UploadFileViewProps) {
 
     const userContext = useAuth();
     const [loading, setLoading] = useState<boolean>(false);
     const [errorText, setErrorText] = useState<string | undefined>(undefined);
     const [successMsg, setSuccessMsg] = useState<string | undefined>(undefined);
-    const [isNewFolderDialogOpen, setIsNewFolderDialogOpen] = useState<boolean>(false);
     
     const handleUpload = (files: any) => {
         const upload = async () => {
@@ -40,6 +44,7 @@ export default function UploadFileView({parent_folder_id, setParentFoldeId}:Uplo
                 console.log(response); 
                 if (response.status === 200) {
                     setSuccessMsg(response.data)
+                    fetchAllFilesFolders(); 
                 } else if( response.status === 500 ){ 
 
                 }
@@ -57,17 +62,8 @@ export default function UploadFileView({parent_folder_id, setParentFoldeId}:Uplo
     }
 
     return (
-        <div className="w-3/4 m-auto">
-            
+        <div className="auto">
 
-            <CreateNewFolder  
-                    parent_folder_id={parent_folder_id}
-                    setParentFoldeId={setParentFoldeId}
-                    isNewFolderDialogOpen={isNewFolderDialogOpen}
-                    setIsNewFolderDialogOpen={setIsNewFolderDialogOpen}
-                />
-
-                
             <div className='text-xl'>
                 <label className="block mb-2 text-xl font-medium text-gray-900 dark:text-white" htmlFor="file_input">Upload file</label>
                 <input
