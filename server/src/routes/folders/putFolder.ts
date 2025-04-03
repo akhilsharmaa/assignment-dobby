@@ -19,7 +19,7 @@ router.post("/new", authenticate, async (req: AuthenticatedRequest, res: Respons
         
         const newFolder = await FolderSchema.create({
             foldername: req.body.folder_name, 
-            parentFolderId: req.body.parent_folder_id,
+            parentFolderId: Object(req.body.parent_folder_id),
             createdBy: req.user._id,    
         }) 
         
