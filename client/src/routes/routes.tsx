@@ -42,6 +42,6 @@ export const routes  = [
     },
     {
       path: '*',
-      element: <Navigate to="/" replace />,
+      element: <Navigate to="/root" replace />,
     }
   ]; 
