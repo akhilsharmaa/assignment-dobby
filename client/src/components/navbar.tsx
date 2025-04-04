@@ -1,6 +1,15 @@
 import React from 'react'
+import { useAuth } from '../context/AuthContext'
+
 
 function navbar() {
+ 
+    const logout = () => { 
+        localStorage.removeItem("token"); 
+        window.location.reload();
+
+    };
+    
     return ( 
         <nav className="bg-slate-600 text-white border-gray-200 ">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -10,7 +19,10 @@ function navbar() {
                         (Assignment)
                     </span>
                 </a> 
-                <a>logout</a>
+                <button
+                    onClick={logout}>
+                    logout
+                </button>
             </div>
         </nav> 
     )
