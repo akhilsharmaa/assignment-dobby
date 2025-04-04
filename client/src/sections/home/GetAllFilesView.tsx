@@ -141,14 +141,18 @@ export default function GetAllFileView({parent_folder_id}:GetAllFileViewProps) {
 
                     {folderList.map((folder, index)  => {
                         return <FolderView 
+                            key={index}
                             folder={folder} />
                     })}  
 
                     {filesList.map((file, index)  => {
-                        return <FileView file={file} />
+                        return <FileView 
+                            key={index}
+                            file={file} />
                     })}  
 
                     </tbody>
+                </table>    
 
                 {
                     loading &&
@@ -171,8 +175,7 @@ export default function GetAllFileView({parent_folder_id}:GetAllFileViewProps) {
                         <p className='p-4'>Loading Folders... </p>
                     </div> 
                 } 
-
-            </table>
+ 
         </div>
     );
 }
