@@ -7,7 +7,8 @@ router.use('', [registerUser, loginUser]);
 
 import newUpload from "./files/putFiles" 
 import getUploads from "./files/getFiles" 
-router.use("/files", [newUpload, getUploads]); 
+import searchFiles from "./files/searchFiles" 
+router.use("/files", [newUpload, getUploads, searchFiles]); 
 
 
 import newFolder from "./folders/putFolder" 

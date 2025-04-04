@@ -10,6 +10,7 @@ function navbar() {
                         (Assignment)
                     </span>
                 </a> 
+                <a>logout</a>
             </div>
         </nav> 
     )

@@ -7,6 +7,7 @@ import FolderView from '../../components/FolderView';
 import CreateNewFolder from './CreateNewFolder';
 import { useSearchParams } from 'react-router-dom';
 import UploadFileView from './UploadFileView';
+import SearchView from './SearchView';
 
 
 interface GetAllFileViewProps {
@@ -106,7 +107,8 @@ export default function GetAllFileView({parent_folder_id}:GetAllFileViewProps) {
 
     return (
         <div className="w-2/3 m-auto mt-10">
-                
+
+
                 <div className='flex justify-end'>
 
                     <CreateNewFolder  
@@ -122,6 +124,9 @@ export default function GetAllFileView({parent_folder_id}:GetAllFileViewProps) {
                     />
                 </div>
 
+                <div className='flex justify-end'>
+                    <SearchView/>
+                </div>
 
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500  ">
                     <thead className="text-xs text-gray-700 uppercase ">

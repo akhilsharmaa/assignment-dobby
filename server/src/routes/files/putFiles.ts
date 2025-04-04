@@ -22,6 +22,8 @@ router.post("/new", upload.single('file'), authenticate, async (req: Authenticat
 
     try {
 
+        console.log("putObject: req.user._id: ", req.user._id);
+        
         const newfile = await FilesSchema.create({
             parentFolderId: req.body.parent_folder_id,
             createdBy: req.user._id, 
